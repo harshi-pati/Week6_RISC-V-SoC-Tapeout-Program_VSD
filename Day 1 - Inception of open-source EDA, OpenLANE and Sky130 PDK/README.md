@@ -188,5 +188,58 @@ OpenLANE automates this process through several major stages:
 * Global data shows consistent production volumes for 130nm and 180nm nodes, proving their continued importance.
 
 ---
+
 ### **2.4 Introduction to OpenLANE Detailed ASIC Design Flow**
 
+This section provides a comprehensive overview of the **OpenLANE** end-to-end ASIC design flow — from Register Transfer Level (RTL) description to the final **GDSII** layout ready for fabrication. OpenLANE integrates multiple open-source EDA tools, automating complex stages while maintaining flexibility for user control and optimization.
+
+#### **Synthesis**
+
+* The design’s **RTL code** (typically written in Verilog) is synthesized using **Yosys**.
+* Yosys converts high-level behavioral logic into a **gate-level netlist**, mapped to standard cells from the **Sky130 PDK**.
+* The synthesized netlist undergoes **logic optimization** for area, timing, and power efficiency.
+
+#### **Floorplanning**
+
+* Defines the **die area**, **core boundaries**, **I/O pin placements**, and **power distribution network (PDN)**.
+* Macro placement and routing blockages are defined to ensure sufficient routing space.
+* Power rails and metal layers are arranged systematically to minimize **IR drop** and **electromigration** issues.
+
+#### **Placement**
+
+* Placement is performed in two stages: **global placement** and **detailed placement**.
+* Standard cells are optimally arranged to reduce wirelength, congestion, and delay.
+* The design ensures timing-critical paths have minimal interconnect delay while maintaining design-rule compliance.
+
+#### **Clock Tree Synthesis (CTS)**
+
+* The **CTS** process distributes the clock signal uniformly to all sequential elements.
+* Clock buffers and inverters are inserted to reduce **skew** and **latency** across the design.
+* Balanced clock networks, such as **H-tree** or **X-tree**, are commonly implemented for uniform timing propagation.
+
+#### **Routing**
+
+* The routing stage establishes **metal interconnections** between placed cells.
+* Global routing plans the overall topology, while **detailed routing** finalizes the physical connections.
+* OpenROAD’s **TritonRoute** ensures all nets are connected, adhering to **design rules** for wire spacing, width, and via density.
+* Multi-layer routing (with alternate horizontal and vertical metal layers) enhances signal integrity and minimizes crosstalk.
+
+#### **Sign-Off and Physical Verification**
+
+* **Design Rule Check (DRC)** ensures compliance with all foundry-defined geometric and spacing constraints.
+* **Layout Versus Schematic (LVS)** verifies that the final layout matches the original logical netlist.
+* **Static Timing Analysis (STA)** checks timing closure, ensuring all setup and hold constraints are met at the defined clock frequency.
+* Additional checks like **antenna rule verification** and **parasitic extraction** are also performed.
+
+#### **GDSII Export**
+
+* After successful verification, the finalized layout is exported as a **GDSII** file — the standard format for chip fabrication.
+* The GDSII file includes all physical layer information (diffusion, polysilicon, metals, vias, etc.) required by the foundry.
+
+#### **Key Advantages**
+
+* Fully automated and repeatable flow, ensuring **reproducibility** and **scalability**.
+* Enables rapid **design iterations**, optimization, and exploration of trade-offs (area vs. timing vs. power).
+* Makes **ASIC design accessible** to students, researchers, and startups without access to costly proprietary EDA tools.
+  
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9bb649d6-ad39-4eb0-95dc-0ea7abae8c8d" />
