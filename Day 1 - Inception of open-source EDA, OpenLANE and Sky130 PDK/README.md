@@ -243,3 +243,124 @@ This section provides a comprehensive overview of the **OpenLANE** end-to-end AS
 * Makes **ASIC design accessible** to students, researchers, and startups without access to costly proprietary EDA tools.
   
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9bb649d6-ad39-4eb0-95dc-0ea7abae8c8d" />
+
+## **3. Getting Familiar with Open Source EDA Tools (Lab)**
+
+## 📂 Directory Setup
+
+Navigate to OpenLANE working directory:
+
+```bash
+cd ~/Desktop/work/tools/openlane_working_dir
+ls -ltr
+```
+
+Navigate to PDKs and libraries:
+
+```bash
+cd ../pdks/sky130A/libs.ref
+ls -ltr
+```
+
+### 📸 Screenshots — Directory & PDK Checks
+
+| Description                 | Screenshot                                                           |
+| --------------------------- | -------------------------------------------------------------------- |
+| Listing OpenLane workspace  | <img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/23aca51b-3050-49c0-abf2-422a03d4b1ec" /> |
+
+
+---
+
+## 🚀 Run Synthesis for `picorv32a`
+
+### Commands
+
+```bash
+cd ~/Desktop/work/tools/openlane_working_dir/openlane
+docker
+```
+
+```tcl
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+exit
+exit
+```
+
+### 📸 Screenshots — Running OpenLane
+
+<img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/6e4a30f9-4b4d-4538-bc05-d39df00cf0b1" />
+
+<img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/fe588a5c-e496-4567-84cb-0a714dfd38d9" />
+
+<img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/9fd50c5c-4d23-480e-92f0-e37b0fb1a9e3" />
+
+---
+
+## 📑 Check Synthesis Reports
+
+Go to the synthesis reports folder:
+
+```bash
+cd designs/picorv32a/runs/<timestamp>/reports/synthesis
+ls -ltr
+```
+
+Open Yosys cell stat file:
+
+```bash
+less 1-yosys_4.stat.rpt
+```
+
+<img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/fa700e9b-71e9-4a51-9547-fb467ca3f420" />
+<img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/196e736c-35ed-4d1c-af07-1603e1743305" />
+
+
+| Description           | Screenshot                                                   |
+| --------------------- | ------------------------------------------------------------ |
+| Yosys cell stats      | <img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/0ac7f91e-cc14-4f5b-8005-703fafc02c1f" /> |
+| Highlighted DFF count | <img width="1280" height="768" alt="Image" src="https://github.com/user-attachments/assets/77c478b9-5e50-4cf4-8913-e95640735d41" /> |
+
+
+---
+
+## 🧮 Flop Ratio Calculation
+
+Formula:
+
+```math
+Flop\ Ratio = \frac{Number\ of\ DFF}{Total\ Number\ of\ Cells}
+```
+
+```math
+DFF\ Percentage = Flop\ Ratio \times 100
+```
+
+* **Total Standard Cells = 14876**
+* **Total D-Flip-Flops = 1613**
+
+### ✅ Calculation
+
+```math
+Flop\ Ratio = \frac{1613}{14876}
+            = 0.108429685
+```
+
+```math
+Percentage\ of\ DFF = 0.108429685 \times 100
+                    = 10.84296854\%
+```
+
+### 📁 Report Summary
+
+| Metric      | Value       |
+| ----------- | ----------- |
+| Total Cells | **14876**   |
+| DFF Count   | **1613**    |
+| Flop Ratio  | **0.10843** |
+| DFF %       | **10.84%**  |
+
+---
+
