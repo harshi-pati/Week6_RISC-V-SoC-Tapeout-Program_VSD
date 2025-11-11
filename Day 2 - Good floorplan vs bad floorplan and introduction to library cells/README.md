@@ -235,7 +235,7 @@ Once the floorplan completes, OpenLANE produces a set of reports and configurati
 
 ```bash
 # Navigate to the design run directory
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-10_08-30/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11_13-33/
 
 # Review the configuration file
 less config.tcl
@@ -253,7 +253,7 @@ The **DEF (Design Exchange Format)** file contains geometric data defining the d
 
 ```bash
 # Navigate to the floorplan results directory
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-10_08-30/results/floorplan
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/10-11_13-33/results/floorplan
 
 # Open the generated floorplan DEF file
 less picorv32a.floorplan.def
@@ -295,6 +295,11 @@ These values define the **physical dimensions** of the die in the layout coordin
  Area of die in microns = Die width in microns * Die hieght in microns
                         = (660685/1000) * (671405/1000)
                         = 443587.212425 square microns
+#### Review floorplan layout in Magic
+
+<img width="1600" height="1200" alt="Image" src="https://github.com/user-attachments/assets/97b528e1-44c8-42d4-9932-a862917663ba" />
+<img width="1600" height="1200" alt="Image" src="https://github.com/user-attachments/assets/6f85e827-7962-4c28-b84e-d3d83812ad22" />
+<img width="1600" height="1200" alt="Image" src="https://github.com/user-attachments/assets/1529f5ce-a451-436e-bfb8-9cf4d273d169" />
 
 ---
 
@@ -369,6 +374,10 @@ Placement occurs in two stages:
 2. **Detailed Placement:** Legalizes the global placement by aligning cells properly within placement rows, removing overlaps, and ensuring design rules are met.
 
 This two-step approach ensures efficient utilization of area, balanced wire-length, and reduced routing congestion, ultimately improving timing closure and manufacturability.
+
+<img width="1600" height="1200" alt="Image" src="https://github.com/user-attachments/assets/8ba9cef3-d2c5-4abb-a92f-5483e94c2863" />
+<img width="1600" height="1200" alt="Image" src="https://github.com/user-attachments/assets/10dd1b95-d876-4f4f-9b9d-48a3c82bfdb8" />
+<img width="1600" height="1200" alt="Image" src="https://github.com/user-attachments/assets/eb4aae19-4223-46e9-a9d1-a507234d7c68" />
 
 ---
 
